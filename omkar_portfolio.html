@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Omkar Ghuge | Civil Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #0d0f0e;
+      --surface:  #141714;
+      --card:     #1a1d1a;
+      --border:   #2a2e2a;
+      --green:    #4caf7d;
+      --green-dim:#2d6b4a;
+      --cream:    #e8e4dc;
+      --muted:    #7a8078;
+      --text:     #d4d8d2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 6vw;
+      background: rgba(13,15,14,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .logo span { color: var(--green); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 6vw;
+      padding-top: 80px;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 80% 40%, rgba(76,175,125,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--green);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      border: 1px solid var(--green-dim);
+      background: rgba(76,175,125,0.06);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 900; line-height: 0.95;
+      letter-spacing: -0.02em; color: var(--cream);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero h1 .line2 { color: var(--green); display: block; }
+
+    .hero-desc {
+      font-size: 1rem; font-weight: 300; color: var(--muted);
+      line-height: 1.8; max-width: 440px; margin-bottom: 2.5rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: 0.85rem 1.8rem; border-radius: 4px;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-green {
+      background: var(--green); color: #0d0f0e;
+      border: 2px solid var(--green);
+    }
+    .btn-green:hover { background: transparent; color: var(--green); }
+
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 2px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+    /* Right side stat block */
+    .hero-right {
+      display: flex; flex-direction: column; gap: 1.2rem;
+      align-items: flex-end;
+    }
+
+    .stat-card {
+      width: 100%; max-width: 300px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.4rem 1.8rem;
+      text-align: left;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 900; color: var(--green);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem; font-weight: 500; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-top: 0.4rem;
+    }
+
+    .hero-right-links {
+      width: 100%; max-width: 300px;
+      display: flex; gap: 0.8rem;
+    }
+
+    .icon-link {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 1rem; background: var(--card);
+      border: 1px solid var(--border); border-radius: 8px;
+      text-decoration: none; color: var(--muted);
+      font-size: 0.72rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .icon-link span { font-size: 1.4rem; }
+    .icon-link:hover { border-color: var(--green); color: var(--green); }
+
+    /* ─── DIVIDER ─── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 6vw; }
+
+    /* ─── SECTION ─── */
+    section { padding: 6rem 6vw; }
+
+    .sec-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 0.6rem;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+      color: var(--cream); line-height: 1.1; margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start;
+    }
+    .about-text p {
+      color: var(--muted); font-weight: 300; line-height: 1.9;
+      margin-bottom: 1.2rem; font-size: 1rem;
+    }
+    .about-info { display: flex; flex-direction: column; gap: 0; }
+    .info-row {
+      display: flex; flex-direction: column; gap: 0.25rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+    }
+    .info-row:first-child { padding-top: 0; }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-key {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--green);
+    }
+    .info-val { font-size: 0.95rem; font-weight: 400; color: var(--cream); }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.4rem 1.6rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+      transition: border-color 0.2s;
+    }
+    .skill-item:hover { border-color: var(--green); }
+    .skill-emoji { font-size: 1.6rem; }
+    .skill-name {
+      font-size: 0.92rem; font-weight: 500; color: var(--cream);
+    }
+    .skill-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── CERTS ─── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.8rem;
+    }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .cert-card:hover { transform: translateY(-4px); border-color: var(--green); }
+
+    .cert-thumb {
+      width: 100%; height: 170px;
+      background: linear-gradient(135deg, #1a2e22 0%, #0f1f15 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .cert-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .cert-num {
+      position: absolute; bottom: 10px; right: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 900;
+      color: rgba(76,175,125,0.2); line-height: 1;
+    }
+
+    .cert-info { padding: 1.3rem 1.5rem; }
+    .cert-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+    .cert-org {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green);
+    }
+    .cert-note {
+      font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem; max-width: 900px;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; text-decoration: none; color: var(--text);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-card:hover { border-color: var(--green); background: rgba(76,175,125,0.04); }
+    .contact-ico {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--green); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .c-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .c-val { font-size: 0.92rem; font-weight: 400; color: var(--cream); margin-top: 0.2rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 1.8rem 6vw;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem; color: var(--muted);
+    }
+    footer strong { color: var(--green); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 540px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="logo">OG<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <div class="hero-badge">Civil Engineering Student</div>
+      <h1>Omkar<span class="line2">Ghuge</span></h1>
+      <p class="hero-desc">
+        Aspiring civil engineer at MIT Academy of Engineering, Pune — passionate about structural design,
+        construction technology, and building a sustainable future.
+      </p>
+      <div class="hero-actions">
+        <a href="#certificates" class="btn btn-green">View Certificates</a>
+        <a href="https://in.linkedin.com/in/omkar-ghuge-518b06405" target="_blank" class="btn btn-ghost">LinkedIn Profile</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Certificates Earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">B.E.</div>
+        <div class="stat-label">Civil Engineering — MITAOE</div>
+      </div>
+      <div class="hero-right-links">
+        <a href="https://in.linkedin.com/in/omkar-ghuge-518b06405" target="_blank" class="icon-link">
+          <span>💼</span>LinkedIn
+        </a>
+        <a href="https://github.com/ghugeomkar44-tech" target="_blank" class="icon-link">
+          <span>🐙</span>GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="sec-label">Who I Am</p>
+    <h2 class="sec-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm Omkar Ghuge, a dedicated Civil Engineering student at MIT Academy of Engineering (MITAOE), Pune.
+          My studies have given me a strong grounding in core engineering principles — from structural analysis
+          and soil mechanics to hydraulics and construction management.
+        </p>
+        <p>
+          Beyond academics, I actively pursue certifications and hands-on learning to stay current with industry
+          tools and practices. I've earned 5 certificates that reflect my commitment to growing as an engineer.
+          I also maintain a GitHub profile to document technical projects and learning in computational tools.
+        </p>
+      </div>
+      <div class="about-info">
+        <div class="info-row">
+          <span class="info-key">Name</span>
+          <span class="info-val">Omkar Ghuge</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Degree</span>
+          <span class="info-val">B.E. Civil Engineering</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Institute</span>
+          <span class="info-val">MIT Academy of Engineering, Pune</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Location</span>
+          <span class="info-val">Pune, Maharashtra, India</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">GitHub</span>
+          <span class="info-val">ghugeomkar44-tech</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Certifications</span>
+          <span class="info-val">5 Earned</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="sec-label">Capabilities</p>
+    <h2 class="sec-title">Core Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-emoji">📐</div>
+        <div class="skill-name">Structural Analysis</div>
+        <div class="skill-desc">Beam, truss & frame load analysis</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-emoji">🗺️</div>
+        <div class="skill-name">Surveying</div>
+        <div class="skill-desc">Levelling, contouring & theodolite</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-emoji">🏗️</div>
+        <div class="skill-name">Construction Materials</div>
+        <div class="skill-desc">Concrete, steel & material testing</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-emoji">💧</div>
+        <div class="skill-name">Fluid Mechanics</div>
+        <div class="skill-desc">Flow, hydraulics & pipe networks</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-emoji">🖥️</div>
+        <div class="skill-name">AutoCAD</div>
+        <div class="skill-desc">2D drafting & technical drawings</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-emoji">🌍</div>
+        <div class="skill-name">Geotechnical Engg.</div>
+        <div class="skill-desc">Soil mechanics & foundation design</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <p class="sec-label">Achievements</p>
+    <h2 class="sec-title">My Certificates</h2>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-thumb">🏅<span class="cert-num">01</span></div>
+        <div class="cert-info">
+          <div class="cert-name">Certificate 1</div>
+          <div class="cert-org">Issuing Organization</div>
+          <div class="cert-note">Update with your certificate name and details.</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-thumb">🏅<span class="cert-num">02</span></div>
+        <div class="cert-info">
+          <div class="cert-name">Certificate 2</div>
+          <div class="cert-org">Issuing Organization</div>
+          <div class="cert-note">Update with your certificate name and details.</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-thumb">🏅<span class="cert-num">03</span></div>
+        <div class="cert-info">
+          <div class="cert-name">Certificate 3</div>
+          <div class="cert-org">Issuing Organization</div>
+          <div class="cert-note">Update with your certificate name and details.</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-thumb">🏅<span class="cert-num">04</span></div>
+        <div class="cert-info">
+          <div class="cert-name">Certificate 4</div>
+          <div class="cert-org">Issuing Organization</div>
+          <div class="cert-note">Update with your certificate name and details.</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-thumb">🏅<span class="cert-num">05</span></div>
+        <div class="cert-info">
+          <div class="cert-name">Certificate 5</div>
+          <div class="cert-org">Issuing Organization</div>
+          <div class="cert-note">Update with your certificate name and details.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="sec-label">Get In Touch</p>
+    <h2 class="sec-title">Contact</h2>
+    <div class="contact-grid">
+
+      <a href="https://in.linkedin.com/in/omkar-ghuge-518b06405" target="_blank" class="contact-card">
+        <div class="contact-ico">💼</div>
+        <div>
+          <div class="c-label">LinkedIn</div>
+          <div class="c-val">omkar-ghuge-518b06405</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/ghugeomkar44-tech" target="_blank" class="contact-card">
+        <div class="contact-ico">🐙</div>
+        <div>
+          <div class="c-label">GitHub</div>
+          <div class="c-val">ghugeomkar44-tech</div>
+        </div>
+      </a>
+
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-ico">🎓</div>
+        <div>
+          <div class="c-label">College</div>
+          <div class="c-val">MIT Academy of Engineering, Pune</div>
+        </div>
+      </div>
+
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-ico">📍</div>
+        <div>
+          <div class="c-label">Location</div>
+          <div class="c-val">Pune, Maharashtra, India</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Portfolio of <strong>Omkar Ghuge</strong> &mdash; Civil Engineering Student, MITAOE Pune</p>
+  </footer>
+
+</body>
+</html>
